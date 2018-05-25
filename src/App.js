@@ -47,14 +47,23 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      display: ''
+      display: '',
+
     }
     this.click = this.click.bind(this);
+    this.calculateOperations = this.calculateOperations.bind(this);
   }
 
   click(value) {
     this.setState({ display: this.state.display + value });
   }
+
+
+  calculateOperations() {
+		let sum = eval(this.state.display);
+		this.setState({ display: sum });
+}
+
 
   render() {
 
@@ -79,7 +88,7 @@ class App extends Component {
 
             <Button click={this.click} label="C" value="clear"/>
             <Button click={this.click} label="0" value="0"/>
-            <Button click={this.click} label="=" value="equal"/>
+            <Button click={this.calculateOperations} label="=" value="equal"/>
             <Button click={this.click} label="+" value="+"/>
           </div>
       </div>
