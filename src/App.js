@@ -14,7 +14,7 @@ class Display extends Component {
     return (
         <div className="Display">
           <div className="result">
-            {text}
+          {text.length > 10 ? `...${text.slice(text.length - 10)}` : text}
           </div>
         </div>
     );
@@ -48,10 +48,10 @@ class App extends Component {
     super(props);
     this.state = {
       display: '',
-
     }
     this.click = this.click.bind(this);
     this.calculateOperations = this.calculateOperations.bind(this);
+    this.clearDisplay = this.clearDisplay.bind(this);
   }
 
   click(value) {
@@ -62,11 +62,14 @@ class App extends Component {
   calculateOperations() {
 		let sum = eval(this.state.display);
 		this.setState({ display: sum });
-}
+  }
+
+  clearDisplay() {
+    this.setState({ display: "" })
+  }
 
 
   render() {
-
     return (
       <div className="App">
         <Display text={this.state.display}/>
@@ -86,10 +89,13 @@ class App extends Component {
             <Button click={this.click} label="3" value="3"/>
             <Button click={this.click} label="-" value="-"/>
 
-            <Button click={this.click} label="C" value="clear"/>
+            <Button click={this.clearDisplay} label="C" value=""/>
             <Button click={this.click} label="0" value="0"/>
-            <Button click={this.calculateOperations} label="=" value="equal"/>
+            <Button click={this.click} label="," value="."/>
             <Button click={this.click} label="+" value="+"/>
+          
+            <Button click={this.calculateOperations} label="=" value=""/>
+           
           </div>
       </div>
     );
