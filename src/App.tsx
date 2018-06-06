@@ -1,70 +1,36 @@
-import React, { Component } from 'react';
+import * as React from 'react'
+import {Button, Display} from './components'
 import './App.css';
 
-class Display extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
 
-    };
+namespace App {
+  export interface Props {
+    //empty
   }
 
-  render () {
-    const { text } = this.props;
-    return (
-        <div className="Display">
-          <div className="result">
-          {text.length > 10 ? `...${text.slice(text.length - 10)}` : text}
-          </div>
-        </div>
-    );
-  }
-};
-
-
-class Button extends Component {
-  constructor(props) {
-    super(props);
-    this.onClick = this.onClick.bind(this);
-  }
-
-  onClick() {
-    this.props.click(this.props.value);
-  }
-
-  render () {
-    const { label } = this.props;
-    return (
-        <button onClick={this.onClick} className="Button">
-        {label}
-        </button>
-    )
+  export interface State {
+    display: string
   }
 }
 
-
-class App extends Component {
+export class App extends React.Component<App.Props, App.State> {
   constructor(props) {
     super(props);
     this.state = {
       display: '',
     }
-    this.click = this.click.bind(this);
-    this.calculateOperations = this.calculateOperations.bind(this);
-    this.clearDisplay = this.clearDisplay.bind(this);
   }
 
-  click(value) {
+  click = (value) => {
     this.setState({ display: this.state.display + value });
   }
 
-
-  calculateOperations() {
+  calculateOperations = () => {
 		let sum = eval(this.state.display);
 		this.setState({ display: sum });
   }
 
-  clearDisplay() {
+  clearDisplay = () => {
     this.setState({ display: "" })
   }
 
