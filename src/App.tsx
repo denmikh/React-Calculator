@@ -21,7 +21,7 @@ export class App extends React.Component<App.Props, App.State> {
     }
   }
 
-  click = (value) => {
+  click = (value:string) => {
     this.setState({ display: this.state.display + value });
   }
 
