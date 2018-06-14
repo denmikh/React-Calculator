@@ -67,6 +67,3 @@ export class App extends React.Component<App.Props, App.State> {
     );
   }
 }
-
-
-export default App;
